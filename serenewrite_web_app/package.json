@@ -7,8 +7,8 @@
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "howler": "^2.2.4",
-    "faker": "^5.5.3",               // Mock AI placeholder for generating text etc.
-    "msw": "^1.2.3"                  // Mock Service Worker for mocking API/AI calls
+    "faker": "^5.5.3",
+    "msw": "^1.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
