@@ -1,6 +1,10 @@
 import React from 'react';
 import './App.css';
+import MainContainer from './components/MainContainer';
 
+/**
+ * App is the root of the SereneWrite web app.
+ */
 function App() {
   return (
     <div className="app">
@@ -8,27 +12,14 @@ function App() {
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <div className="logo">
-              <span className="logo-symbol">*</span> KAVIA AI
+              <span className="logo-symbol">*</span> SereneWrite
             </div>
-            <button className="btn">Template Button</button>
+            {/* Navbar right placeholder - can be extended if needed */}
           </div>
         </div>
       </nav>
-
       <main>
-        <div className="container">
-          <div className="hero">
-            <div className="subtitle">AI Workflow Manager Template</div>
-            
-            <h1 className="title">serenewrite_web_app</h1>
-            
-            <div className="description">
-              Start building your application.
-            </div>
-            
-            <button className="btn btn-large">Button</button>
-          </div>
-        </div>
+        <MainContainer />
       </main>
     </div>
   );
