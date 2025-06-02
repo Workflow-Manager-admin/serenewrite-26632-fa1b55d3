@@ -9,69 +9,60 @@ import ExportBar from "./ExportBar";
 
 /**
  * MainContainer is the root view housing all key functional areas for SereneWrite.
- * All subcomponents are imported and arranged according to the minimalist UI layout.
- * Layout uses Tailwind utility classes.
+ * Applies a cohesive, modern light theme for visual clarity and user comfort,
+ * using gentle accent/backgrounds, soft shadows, and separation of writing area vs tools.
  */
 // PUBLIC_INTERFACE
 function MainContainer() {
-  // Modern, minimal layout:
-  // - Soft background expands full viewport; writing area is centered and gently shadowed.
-  // - Tool panels (analytics, AI, streak, ambience, Pomodoro) are visually minimized, faded, or shown only on hover/focus.
-  // - Uses Tailwind for all layout and visuals.
+  // The layout uses light backgrounds, gentle contrast, rounded elements, subtle accent highlights, and good whitespace.
+  // Integrated Tailwind best practices & design tokens reflecting: #F5F6FA (primary), #A3CEF1 (accent), #22223B (secondary).
 
   return (
-    <div className="min-h-screen w-full bg-[#F5F6FA] text-gray-900 flex flex-col items-center justify-center transition-colors duration-300 px-0">
-      {/* Floating control zone: analytics, pomodoro, sound, streak at edge or slide in/out */}
-      <div className="relative flex flex-col items-center w-full z-10 pt-16 pb-6">
-
-        <div className="w-full max-w-3xl flex flex-row justify-between items-start px-2 md:px-0 mb-4">
-          <div className="flex flex-row gap-3 items-start">
-            {/* Streak Goal Tracker fades out until focused */}
-            <div className="group relative transition-all duration-300">
-              <div className="opacity-70 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200">
-                <StreakGoalTracker />
-              </div>
+    <div className="min-h-screen bg-[#F5F6FA] text-gray-900 flex flex-col items-center break-words w-full transition-colors duration-300 px-2 sm:px-0">
+      {/* Top Control Panels: streak, analytics */}
+      <div className="w-full flex flex-col items-center pt-20 pb-8">
+        <div className="w-full max-w-3xl flex flex-row justify-between items-start gap-2 sm:gap-6 px-1 sm:px-0 mb-3">
+          <div className="flex flex-col items-start gap-2">
+            {/* Streak Goal Tracker with strong clarity */}
+            <div className="transition-all duration-300">
+              <StreakGoalTracker />
             </div>
           </div>
-
-          {/* Analytics Panel floats right, minimal unless hovered */}
-          <div className="group relative transition-all duration-300">
-            <div className="opacity-70 hover:opacity-100 focus-within:opacity-100 transition-opacity duration-200">
-              <AnalyticsPanel />
-            </div>
+          {/* Analytics Panel — visually distinct, high clarity */}
+          <div className="transition-all duration-300">
+            <AnalyticsPanel />
           </div>
         </div>
-        
-        {/* Ambient/Pomodoro bar gently overlayed at top center on hover/focus or minimal at sm */}
+        {/* Pomodoro & Soundbar, visually light and easily distinguished */}
         <div className="w-full max-w-2xl flex flex-row justify-center md:justify-end gap-3 mb-2">
-          {/* Controls fade/minimize; appear on hover/focus */}
-          <div className="group flex flex-row space-x-2 pointer-events-none md:pointer-events-auto">
-            <div className="opacity-70 hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-auto">
-              <PomodoroTimer />
-            </div>
-            <div className="opacity-70 hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-auto">
-              <AmbientSoundBar />
-            </div>
+          <div className="flex flex-row space-x-2">
+            <PomodoroTimer />
+            <AmbientSoundBar />
           </div>
-        </div>
-
-        {/* Main central writing area with subtle card shadow and minimalist UI */}
-        <div className="relative w-full flex flex-row justify-center items-start gap-7">
-          {/* AI Tools panel hidden on mobile, fades in on hover/focus */}
-          <aside className="hidden lg:flex flex-col pt-3 w-[220px] items-start">
-            <div className="opacity-60 hover:opacity-100 focus-within:opacity-100 transition-opacity duration-200">
-              <AIEnhanceTools />
-            </div>
-          </aside>
-
-          <main className="flex-1 max-w-2xl mx-auto flex flex-col items-center z-10">
-            <EditorArea />
-            <div className="w-full flex flex-row justify-end mt-4 opacity-70 hover:opacity-100 focus-within:opacity-100 transition-opacity duration-200">
-              <ExportBar />
-            </div>
-          </main>
         </div>
       </div>
+      {/* Main Writing Zone: Editor and Tool Panels */}
+      <div className="w-full flex flex-row justify-center items-start gap-4 md:gap-9 lg:gap-16 px-1 sm:px-0 relative z-20">
+        {/* AI Tools: gently outlined card, only on large screens */}
+        <aside className="hidden lg:flex flex-col pt-3 w-[220px] items-start">
+          <div className="transition-opacity duration-200 ease-in opacity-90 hover:opacity-100 focus-within:opacity-100">
+            <AIEnhanceTools />
+          </div>
+        </aside>
+        {/* The actual writing/editor and export: strongly separated on a neutral card with shadow */}
+        <main className="flex-1 max-w-2xl mx-auto flex flex-col items-center z-10">
+          <section className="w-full flex flex-col items-center">
+            <EditorArea />
+            <div className="w-full flex flex-row justify-end mt-5 transition-opacity duration-200">
+              <ExportBar />
+            </div>
+          </section>
+        </main>
+      </div>
+      {/* Intentional: Light accent border at footer for sense of completion */}
+      <footer className="w-full h-4 mt-12 flex items-center justify-center">
+        <div className="w-28 h-1.5 rounded-full bg-[linear-gradient(90deg,_#A3CEF1_45%,_#F5F6FA_100%)] opacity-70" />
+      </footer>
     </div>
   );
 }
